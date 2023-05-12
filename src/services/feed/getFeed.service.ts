@@ -1,12 +1,14 @@
-import { ResponseMessage, ResponseStatus } from '../interfaces/enums'
+import { ResponseMessage, ResponseStatus } from '../../interfaces/enums'
 
 class GetFeedService {
-  async getFeedService() {
+  async getFeed(id: string) {
     try {
       return {
         status: ResponseStatus.Ok,
         data: {
-          type: ResponseMessage.Ok
+          type: ResponseMessage.Ok,
+          msg: 'getFeedService()',
+          id
         }
       }
     } catch (err) {
