@@ -4,7 +4,7 @@ import Database from './db'
 import { AppConfig } from './interfaces/enums'
 import routes from './routes'
 
-class app {
+class App {
   app: any
   port: string = AppConfig.PORT
   db = new Database()
@@ -42,4 +42,4 @@ class app {
   }
 }
 
-export default app
+export default App

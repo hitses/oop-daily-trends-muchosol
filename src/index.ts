@@ -1,4 +1,3 @@
-import app from './app'
+import App from './app'
 
-const server = new app()
-server.start()
+new App().start()
