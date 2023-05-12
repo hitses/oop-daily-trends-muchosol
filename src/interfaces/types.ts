@@ -6,3 +6,5 @@ export interface FeedInterface {
 }
 
 type NewspaperType = 'El País' | 'El Mundo'
+
+export type PostFeedInterface = Omit<FeedInterface, 'delete'>
