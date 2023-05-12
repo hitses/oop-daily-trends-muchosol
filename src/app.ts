@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import Database from './db'
 import { AppConfig } from './interfaces/enums'
+import routes from './routes'
 
 class app {
   app: any
@@ -31,7 +32,7 @@ class app {
   }
 
   routes() {
-    // this.app.use('/api', routes)
+    this.app.use('/api', routes)
   }
 
   start() {
