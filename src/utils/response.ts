@@ -1,4 +1,4 @@
-import { ResponseMessage, ResponseStatus } from '../interfaces/enums'
+import { ResponseStatus } from '../interfaces/enums'
 
 class ServerResponse {
   okResponse(data: object) {
@@ -47,7 +47,7 @@ class ServerResponse {
     return {
       status: ResponseStatus.InternalServerError,
       data: {
-        message: `${service} ${ResponseMessage.InternalServerError}`,
+        message: `${service}`,
         err
       }
     }
