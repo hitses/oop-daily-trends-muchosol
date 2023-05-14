@@ -1,6 +1,6 @@
-import { ResponseMessage, ResponseStatus } from '../../interfaces/enums'
 import { FeedInterface } from '../../interfaces/types'
 import Feed from '../../models/feed.model'
+import ServerResponse from '../../utils/response'
 
 class GetFeedsService {
   private feeds: FeedInterface[] = []
@@ -44,22 +44,9 @@ class GetFeedsService {
         { $limit: 10 }
       ])
 
-      return {
-        status: ResponseStatus.Ok,
-        data: {
-          status: ResponseStatus.Ok,
-          type: ResponseMessage.Ok,
-          feeds: this.feeds
-        }
-      }
+      return new ServerResponse().okResponse(this.feeds)
     } catch (err) {
-      return {
-        status: ResponseStatus.InternalServerError,
-        data: {
-          message: `getFeedsService() ${ResponseMessage.InternalServerError}`,
-          err
-        }
-      }
+      return new ServerResponse().errorResponse(err, 'getFeedsService()')
     }
   }
 }

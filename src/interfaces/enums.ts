@@ -16,16 +16,6 @@ export enum ResponseStatus {
   InternalServerError = 500
 }
 
-export enum ResponseMessage {
-  Ok = 'OK',
-  Created = 'CREATED',
-  Deleted = 'DELETED',
-  BadRequest = 'BAD_REQUEST',
-  NotFound = 'NOT_FOUND',
-  Timeout = 'TIMEOUT',
-  InternalServerError = 'INTERNAL_SERVER_ERROR'
-}
-
 export enum FeedConfig {
   paisUrl = 'https://elpais.com/',
   mundoUrl = 'https://www.elmundo.es/',

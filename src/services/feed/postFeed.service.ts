@@ -1,6 +1,6 @@
-import { ResponseMessage, ResponseStatus } from '../../interfaces/enums'
 import { PostFeedInterface } from '../../interfaces/types'
 import Feed from '../../models/feed.model'
+import ServerResponse from '../../utils/response'
 
 class PostFeedService {
   async postFeed(feed: PostFeedInterface) {
@@ -9,27 +9,9 @@ class PostFeedService {
 
       newFeed.save()
 
-      return {
-        status: ResponseStatus.Created,
-        data: {
-          status: ResponseStatus.Created,
-          type: ResponseMessage.Created,
-          data: {
-            _id: newFeed._id,
-            text: newFeed.text,
-            href: newFeed.href,
-            newspaper: newFeed.newspaper
-          }
-        }
-      }
+      return new ServerResponse().createdResponse(newFeed)
     } catch (err) {
-      return {
-        status: ResponseStatus.InternalServerError,
-        data: {
-          message: `postFeedService() ${ResponseMessage.InternalServerError}`,
-          err
-        }
-      }
+      return new ServerResponse().errorResponse(err, 'postFeedService()')
     }
   }
 }

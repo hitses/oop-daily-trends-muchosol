@@ -1,6 +1,6 @@
-import { ResponseMessage, ResponseStatus } from '../../interfaces/enums'
 import { FeedInterface, NewspaperType } from '../../interfaces/types'
 import Feed from '../../models/feed.model'
+import ServerResponse from '../../utils/response'
 
 class PatchFeedService {
   private feed!: FeedInterface
@@ -18,22 +18,9 @@ class PatchFeedService {
           { runValidators: true, new: true }
         )) ?? ({} as FeedInterface)
 
-      return {
-        status: ResponseStatus.Ok,
-        data: {
-          type: ResponseMessage.Ok,
-          msg: 'patchFeedService()',
-          feed: this.feed
-        }
-      }
+      return new ServerResponse().okResponse(this.feed)
     } catch (err) {
-      return {
-        status: ResponseStatus.InternalServerError,
-        data: {
-          message: `patchFeedService() ${ResponseMessage.InternalServerError}`,
-          err
-        }
-      }
+      return new ServerResponse().errorResponse(err, 'patchFeedService()')
     }
   }
 }

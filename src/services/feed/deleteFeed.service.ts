@@ -1,5 +1,5 @@
-import { ResponseMessage, ResponseStatus } from '../../interfaces/enums'
 import Feed from '../../models/feed.model'
+import ServerResponse from '../../utils/response'
 
 class DeleteFeedService {
   async deleteFeed(_id: string) {
@@ -10,22 +10,11 @@ class DeleteFeedService {
         { new: true }
       )
 
-      return {
-        status: ResponseStatus.Ok,
-        data: {
-          type: ResponseMessage.Ok,
-          msg: 'deleteFeedService()',
-          message: 'Feed deleted successfully'
-        }
-      }
+      return new ServerResponse().deletedResponse({
+        msg: 'Feed deleted successfully'
+      })
     } catch (err) {
-      return {
-        status: ResponseStatus.InternalServerError,
-        data: {
-          message: `deleteFeedService() ${ResponseMessage.InternalServerError}`,
-          err
-        }
-      }
+      return new ServerResponse().errorResponse(err, 'deleteFeedService()')
     }
   }
 }
