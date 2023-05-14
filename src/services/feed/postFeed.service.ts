@@ -1,15 +1,25 @@
 import { ResponseMessage, ResponseStatus } from '../../interfaces/enums'
+import { PostFeedInterface } from '../../interfaces/types'
+import Feed from '../../models/feed.model'
 
 class PostFeedService {
-  async postFeed(feed: any) {
-    // TODO: add type
+  async postFeed(feed: PostFeedInterface) {
     try {
+      const newFeed = await Feed.create(feed)
+
+      newFeed.save()
+
       return {
-        status: ResponseStatus.Ok,
+        status: ResponseStatus.Created,
         data: {
-          type: ResponseMessage.Ok,
-          msg: 'postFeedService()',
-          feed
+          status: ResponseStatus.Created,
+          type: ResponseMessage.Created,
+          data: {
+            _id: newFeed._id,
+            text: newFeed.text,
+            href: newFeed.href,
+            newspaper: newFeed.newspaper
+          }
         }
       }
     } catch (err) {
