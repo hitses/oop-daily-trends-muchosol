@@ -30,11 +30,13 @@ export enum FeedConfig {
   paisUrl = 'https://elpais.com/',
   mundoUrl = 'https://www.elmundo.es/',
   mundoName = 'El Mundo',
-  paisName = 'El País'
+  paisName = 'El País',
+  anchorMundoSelector = 'a.ue-c-cover-content__link',
+  h2MundoSelector = 'h2.ue-c-cover-content__headline',
+  anchorPaisSelector = 'h2.c_t > a'
 }
 
-export const USER_AGENT = Object.freeze({
-  userAgent:
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' +
+export enum USER_AGENT {
+  userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' +
     ' AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
-})
+}
